@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آزمون ریاضی - استاد شمسایی</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9ff;
+            color: #2c3e50;
+        }
+        
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .message {
+            padding: 30px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            max-width: 450px;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .message h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+        
+        .message p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .start-btn {
+            background: linear-gradient(to right, #3498db, #1a56db);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(to right, #2c80b9, #1548b3);
+        }
+        
+        .exam-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            border: none;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: none;
+            position: relative;
+        }
+        
+        .timer-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+        
+        .footer {
+            padding: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            background: #f8f9ff;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .copyright {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 480px) {
+            .message {
+                padding: 25px 15px;
+            }
+            
+            .message h2 {
+                font-size: 1.4rem;
+            }
+            
+            .message p {
+                font-size: 1.05rem;
+            }
+            
+            .start-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message" id="message">
+            <h2>آزمون ریاضی - استاد شمسایی</h2>
+            <p>آزمون در تاریخ جمعه، ۰۱ اسفند ۱۴۰۴ ساعت ۱۹:۰۰ آغاز می‌شود</p>
+            <p>لطفاً در زمان تعیین شده وارد شوید</p>
+            <button id="start-btn" class="start-btn">شروع آزمون</button>
+        </div>
+        
+        <div class="exam-container" id="exam-container">
+            <div class="timer-container" id="timer">20:00</div>
+            <iframe src="https://app.epoll.ir/e/شمسایی/MTY5MDA1?Referral=iframe" 
+                    width="100%" 
+                    height="100%"
+                    frameborder="0"
+                    allow="camera; microphone; autoplay"></iframe>
+        </div>
+        
+        <div class="footer">
+            <p class="copyright">تمامی حقوق محفوظ است آرشام فاضل 2026</p>
+            
+        </div>
+    </div>
+
+    <script>
+        // تاریخ و زمان آزمون (به زمان UTC)
+        const examStart = new Date('2026-02-20T15:30:00Z'); // 19:00 ایران = 15:30 UTC
+        const examEnd = new Date('2026-02-20T16:10:00Z');   // 19:40 ایران = 16:10 UTC
+        const examDuration = 20 * 60; // 20 دقیقه به ثانیه
+        
+        // بررسی زمان فعلی
+        function checkExamTime() {
+            const now = new Date();
+            const examStarted = localStorage.getItem('examStarted');
+            
+            if (now >= examStart && now <= examEnd) {
+                if (examStarted) {
+                    // آزمون قبلاً شروع شده
+                    document.getElementById('message').style.display = 'none';
+                    document.getElementById('exam-container').style.display = 'block';
+                    startTimer();
+                } else {
+                    // آزمون در بازه زمانی است
+                    document.getElementById('message').style.display = 'block';
+                    document.getElementById('exam-container').style.display = 'none';
+                }
+            } else {
+                // خارج از بازه آزمون
+                document.getElementById('message').style.display = 'block';
+                document.getElementById('exam-container').style.display = 'none';
+                document.getElementById('message').innerHTML = `
+                    <h2>زمان آزمون تمام شد</h2>
+                    <p>آزمون در تاریخ جمعه، ۰۱ اسفند ۱۴۰۴ ساعت ۱۹:۰۰ تا ۱۹:۴۰ برگزار می‌شود</p>
+                    <p>لطفاً در زمان تعیین شده وارد شوید</p>
+                `;
+            }
+        }
+        
+        // شروع تایمر
+        function startTimer() {
+            let timeLeft = examDuration;
+            const timerElement = document.getElementById('timer');
+            
+            const timer = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('exam-container').style.display = 'none';
+                    document.getElementById('message').innerHTML = `
+                        <h2>زمان آزمون تمام شد</h2>
+                        <p>مدت زمان آزمون به پایان رسید</p>
+                        <p>لطفاً در زمان تعیین شده وارد شوید</p>
+                    `;
+                    document.getElementById('message').style.display = 'block';
+                }
+            }, 1000);
+        }
+        
+        // رویداد شروع آزمون
+        document.getElementById('start-btn').addEventListener('click', function() {
+            localStorage.setItem('examStarted', 'true');
+            checkExamTime();
+        });
+        
+        // اجرای بررسی زمان
+        checkExamTime();
+        
+        // بررسی مداوم (هر 10 ثانیه)
+        setInterval(checkExamTime, 10000);
+    </script>
+</body>
+</html>
