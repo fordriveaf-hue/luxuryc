@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آزمون ریاضی - استاد شمسایی</title>
+    <meta name="description" content="لاکچری ها - سایت رسمی کانال فانتزی و کرانچ | مشاهده ویدیوهای جذاب فانتزی و کرانچ از کانال اپارات لاکچری ها">
+    <meta name="keywords" content="لاکچری ها, ویدیوهای فانتزی, کرانچ جذاب, کانال اپارات, لاکچری ها اپارات">
+    <meta name="author" content="لاکچری ها">
+    <title>لاکچری ها - ویدیوهای فانتزی و کرانچ | سایت رسمی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #ff416c;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -13,222 +25,602 @@
         
         body {
             font-family: 'Tajawal', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: #f8f9ff;
-            color: #2c3e50;
-        }
-        
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .message {
-            padding: 30px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            max-width: 450px;
-            margin-bottom: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .message h2 {
-            color: #e74c3c;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-        }
-        
-        .message p {
-            color: #7f8c8d;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
             line-height: 1.6;
-            font-size: 1.1rem;
-        }
-        
-        .start-btn {
-            background: linear-gradient(to right, #3498db, #1a56db);
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            font-weight: 600;
-        }
-        
-        .start-btn:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(to right, #2c80b9, #1548b3);
-        }
-        
-        .exam-container {
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            border: none;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
-            display: none;
+            min-height: 100vh;
             position: relative;
         }
         
-        .timer-container {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e74c3c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            z-index: 10;
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(106, 17, 203, 0.15) 0%, rgba(37, 117, 252, 0.1) 70%);
+            z-index: -1;
         }
         
-        .footer {
-            padding: 20px;
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ناوبری */
+        header {
+            background: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* هرو */
+        .hero {
+            padding: 80px 0 60px;
             text-align: center;
-            color: #7f8c8d;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ffffff, #a8dadc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #a8dadc;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(106, 17, 203, 0.5);
+        }
+        
+        /* ویدیوها */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(106, 17, 203, 0.4);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .video-info p {
+            color: #a8dadc;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .video-duration {
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
             font-size: 0.9rem;
-            background: #f8f9ff;
-            border-top: 1px solid #eaeaea;
+        }
+        
+        /* تماس با ما */
+        .contact {
+            padding: 80px 0;
+            background: rgba(26, 26, 46, 0.7);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .contact-info p {
+            color: #a8dadc;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .contact-links {
+            margin-top: 30px;
+        }
+        
+        .contact-links a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .contact-links a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .contact-links a:hover {
+            color: var(--primary);
+            padding-left: 30px;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #a8dadc;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #5a0dbb, #1a65e6);
+            transform: translateY(-2px);
+        }
+        
+        /* فوتر */
+        footer {
+            background: rgba(10, 10, 20, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
         
         .copyright {
-            font-weight: 500;
-            color: #2c3e50;
+            margin-top: 20px;
+            color: #a8dadc;
+            font-size: 0.95rem;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ریسپانسیو */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .message {
-                padding: 25px 15px;
+            .hero {
+                padding: 60px 0 40px;
             }
             
-            .message h2 {
-                font-size: 1.4rem;
+            .hero h1 {
+                font-size: 2rem;
             }
             
-            .message p {
-                font-size: 1.05rem;
+            .hero p {
+                font-size: 1rem;
             }
             
-            .start-btn {
-                padding: 12px 20px;
+            .cta-button {
+                padding: 12px 30px;
                 font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="message" id="message">
-            <h2>آزمون ریاضی - استاد شمسایی</h2>
-            <p>آزمون در تاریخ جمعه، ۰۱ اسفند ۱۴۰۴ ساعت ۱۹:۰۰ آغاز می‌شود</p>
-            <p>لطفاً در زمان تعیین شده وارد شوید</p>
-            <button id="start-btn" class="start-btn">شروع آزمون</button>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <div class="logo-icon">L</div>
+                    <span>لاکچری ها</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#videos">ویدیوها</a>
+                    <a href="#comments">نظرات</a>
+                    <a href="#contact">تماس با ما</a>
+                </div>
+            </nav>
         </div>
-        
-        <div class="exam-container" id="exam-container">
-            <div class="timer-container" id="timer">20:00</div>
-            <iframe src="https://app.epoll.ir/e/شمسایی/MTY5MDA1?Referral=iframe" 
-                    width="100%" 
-                    height="100%"
-                    frameborder="0"
-                    allow="camera; microphone; autoplay"></iframe>
-        </div>
-        
-        <div class="footer">
-            <p class="copyright">تمامی حقوق محفوظ است آرشام فاضل 2026</p>
-            
-        </div>
-    </div>
+    </header>
 
-    <script>
-        // تاریخ و زمان آزمون (به زمان UTC)
-        const examStart = new Date('2026-02-20T15:30:00Z'); // 19:00 ایران = 15:30 UTC
-        const examEnd = new Date('2026-02-20T16:10:00Z');   // 19:40 ایران = 16:10 UTC
-        const examDuration = 20 * 60; // 20 دقیقه به ثانیه
-        
-        // بررسی زمان فعلی
-        function checkExamTime() {
-            const now = new Date();
-            const examStarted = localStorage.getItem('examStarted');
-            
-            if (now >= examStart && now <= examEnd) {
-                if (examStarted) {
-                    // آزمون قبلاً شروع شده
-                    document.getElementById('message').style.display = 'none';
-                    document.getElementById('exam-container').style.display = 'block';
-                    startTimer();
-                } else {
-                    // آزمون در بازه زمانی است
-                    document.getElementById('message').style.display = 'block';
-                    document.getElementById('exam-container').style.display = 'none';
-                }
-            } else {
-                // خارج از بازه آزمون
-                document.getElementById('message').style.display = 'block';
-                document.getElementById('exam-container').style.display = 'none';
-                document.getElementById('message').innerHTML = `
-                    <h2>زمان آزمون تمام شد</h2>
-                    <p>آزمون در تاریخ جمعه، ۰۱ اسفند ۱۴۰۴ ساعت ۱۹:۰۰ تا ۱۹:۴۰ برگزار می‌شود</p>
-                    <p>لطفاً در زمان تعیین شده وارد شوید</p>
-                `;
-            }
-        }
-        
-        // شروع تایمر
-        function startTimer() {
-            let timeLeft = examDuration;
-            const timerElement = document.getElementById('timer');
-            
-            const timer = setInterval(() => {
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    document.getElementById('exam-container').style.display = 'none';
-                    document.getElementById('message').innerHTML = `
-                        <h2>زمان آزمون تمام شد</h2>
-                        <p>مدت زمان آزمون به پایان رسید</p>
-                        <p>لطفاً در زمان تعیین شده وارد شوید</p>
-                    `;
-                    document.getElementById('message').style.display = 'block';
-                }
-            }, 1000);
-        }
-        
-        // رویداد شروع آزمون
-        document.getElementById('start-btn').addEventListener('click', function() {
-            localStorage.setItem('examStarted', 'true');
-            checkExamTime();
-        });
-        
-        // اجرای بررسی زمان
-        checkExamTime();
-        
-        // بررسی مداوم (هر 10 ثانیه)
-        setInterval(checkExamTime, 10000);
-    </script>
+    <section class="hero">
+        <div class="container">
+            <h1>لاکچری ها</h1>
+            <p>ویدیوهای فانتزی و کرانچ جذاب از کانال اپارات</p>
+            <a href="https://www.aparat.com/LaxuryC" target="_blank" class="cta-button">مشاهده کانال اپارات</a>
+        </div>
+    </section>
+
+    <section id="videos" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>ویدیوهای جدید</h2>
+            </div>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i>🎬</i>
+                    </div>
+                    <div class="video-info">
+                        <h3>کرانچ فانتزی 1</h3>
+                        <p>یکی از بهترین کرانچ های فانتزی این هفته</p>
+                        <span class="video-duration">12:45</span>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i>🎬</i>
+                    </div>
+                    <div class="video-info">
+                        <h3>کرانچ فانتزی 2</h3>
+                        <p>کرانچ جذاب با جزئیات فانتزی</p>
+                        <span class="video-duration">15:20</span>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i>🎬</i>
+                    </div>
+                    <div class="video-info">
+                        <h3>کرانچ فانتزی 3</h3>
+                        <p>کرانچ با جلوه های ویژه فانتزی</p>
+                        <span class="video-duration">10:30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comments" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>نظرات کاربران</h2>
+            </div>
+            <div class="comments-grid">
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div class="user">
+                            <div class="user-avatar">A</div>
+                            <div class="user-name">Ali</div>
+                        </div>
+                        <div class="comment-date">2 روز پیش</div>
+                    </div>
+                    <div class="comment-text">
+                        ویدیوی کرانچ فانتزی 1 خیلی جذاب بود، منتظر ویدیوهای بعدی هستم!
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div class="user">
+                            <div class="user-avatar">S</div>
+                            <div class="user-name">Sara</div>
+                        </div>
+                        <div class="comment-date">1 هفته پیش</div>
+                    </div>
+                    <div class="comment-text">
+                        این کانال واقعاً بهترین کانال فانتزی و کرانچ رو داره، ممنون از تلاش ها!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>تماس با ما</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>در ارتباط باشید</h3>
+                    <p>در صورت سوال یا پیشنهاد، با ما تماس بگیرید. ما همیشه برای شما در خدمت هستیم.</p>
+                    <div class="contact-links">
+                        <a href="https://eitaa.com/laxuryC" target="_blank">کانال ایتا</a>
+                        <a href="https://www.aparat.com/LaxuryC" target="_blank">کانال اپارات</a>
+                        <a href="mailto:info@laxuryc.com">info@laxuryc.com</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">نام شما</label>
+                            <input type="text" id="name" placeholder="نام خود را وارد کنید" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ایمیل</label>
+                            <input type="email" id="email" placeholder="ایمیل خود را وارد کنید" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">پیام</label>
+                            <textarea id="message" placeholder="پیام خود را وارد کنید" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">ارسال پیام</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">L</div>
+                    <span>لاکچری ها</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://eitaa.com/laxuryC" target="_blank">E</a>
+                    <a href="https://www.aparat.com/LaxuryC" target="_blank">A</a>
+                    <a href="#">F</a>
+                    <a href="#">I</a>
+                </div>
+            </div>
+            <div class="copyright">
+                تمامی حقوق محفوظ است | لاکچری ها 2026
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
